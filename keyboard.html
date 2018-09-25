@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <input id="nameInputField">
+        <div>
+            Hello, <span id="nameField">guest</span>.
+
+            <script>
+                function nameHandler(e)
+                {
+                    if(e.keyCode == 13)
+                    {
+                        var nameInputField = document.getElementById("nameInputField");
+                        var nameField = document.getElementById("nameField");
+                        nameField.innerHTML = nameInputField.value;
+                        nameField.style.backgroundColor = 'cyan';
+                        nameField.style.textTransform = 'capitalize';
+                    }
+                }
+                document.addEventListener('keyup',nameHandler);
+            
+            </script>
+        </div>
+    </body>
+
+
+</html>

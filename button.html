@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <button id="clickMe">Click Me!</button>
+        <div>
+            You've clicked the button <span id="numClicks">0 times</span>
+        </div>
+
+        <script>
+            var clicks = 0;
+            function clickHandler()
+            {
+                clicks++;
+                var numClicksSpan = document.getElementById('numClicks');
+                if(clicks == 1)
+                    numClicksSpan.innerHTML = 'Once';
+                else
+                    numClicksSpan.innerHTML = clicks + ' times';                
+            }   
+            var button = document.getElementById('clickMe');
+            button.addEventListener('click', clickHandler);     // this line links the function to the button
+                                                                // the 'click' is not made up, it is required
+                                                                // it is the argument required by addEventListener
+        </script>
+    </body>
+</html>

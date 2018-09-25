@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Sandbox</title>
+    </head>
+    <body>
+        Hello World?
+        <div>
+            The current date/time is <span id="dateTime"></span>
+        </div>
+        <div>
+            You have visited this page: <span id="pageCount"></span> times
+        </div>
+        <div>
+            Your last visit was: <span id="lastVisit"></span> 
+        </div>
+        
+        <script>
+            var dateTimeField = document.getElementById('dateTime');
+            dateTimeField.innerHTML = new Date();
+            
+            var timesVisited = 0;
+            if(localStorage.timesVisited)
+            {
+                timesVisited = parseInt(localStorage.timesVisited);
+            }
+            
+            timesVisited += 1;
+            localStorage.setItem('timesVisited', timesVisited);
+            
+            var pageCount = document.getElementById('pageCount');
+            pageCount.innerHTML = timesVisited;
+            if(timesVisited > 10)
+                pageCount.style.backgroundColor = 'red';
+            
+            /* LAST VISIT */
+            var lastVisitDate = 'never';
+            if(localStorage.lastVisit)      // if this is value does not exist in localStorage it will return 'undefined' which is 'falsey', which skips this statement
+            {                                                           // if the lastVisit object DOES exist in localStorage..
+                var lastVisit = JSON.parse(localStorage.lastVisit);     // parse the JSON object localStorage.lastvisit to the variable lastVisit
+                timesVisited = lastVisit.numVisits;                     // timesVisited = lastVisit.numVisits (passed to variable on line 49)
+                lastVisitDate = lastVisit.date;                         // same as above
+            }
+
+            document.getElementById('lastVisit').innerHTML = lastVisitDate; // then set the innerHTML of the lastVisit span to lastVisitDate
+
+            var myLastVisit = {}                                        // initiate an empty myLastVisit object
+            myLastVisit.date = new Date();                              // inject a date property into the object myLastVisit
+            myLastVisit.numVisits = timesVisited;                       // inject a numVisits property into myLastVisit and give it the value of timesVisited
+            localStorage.lastVisit = JSON.stringify(myLastVisit);       // convert the object to a JSON object and send it to a lastVisit object in localStorage
+
+
+        </script>
+    </body>
+</html>
+
+        
