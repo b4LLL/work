@@ -1,5 +1,8 @@
 <!DOCTYPE html>
 <html>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    </head>
     <body>
         <button id="clickMe">Click Me!</button>
         <div>
@@ -8,19 +11,21 @@
 
         <script>
             var clicks = 0;
+            
             function clickHandler()
             {
                 clicks++;
-                var numClicksSpan = document.getElementById('numClicks');
+                var numClicksSpan = $('#numClicks');
                 if(clicks == 1)
-                    numClicksSpan.innerHTML = 'Once';
+                    numClicksSpan.html('once');
                 else
-                    numClicksSpan.innerHTML = clicks + ' times';                
+                    numClicksSpan.html(clicks + 'times');
             }   
-            var button = document.getElementById('clickMe');
-            button.addEventListener('click', clickHandler);     // this line links the function to the button
-                                                                // the 'click' is not made up, it is required
-                                                                // it is the argument required by addEventListener
+            var button = $('#clickMe');
+            button.click(clickHandler);
+            //both lines above can be combined into the line below
+            //$('#clickMe').click(clickHandler); this throws an error though '$ is undefined :S'
+                                            
         </script>
     </body>
 </html>
